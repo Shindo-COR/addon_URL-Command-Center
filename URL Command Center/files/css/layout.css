@@ -1,0 +1,79 @@
+/* =====================
+   Layout: Main Container
+===================== */
+
+/* #mainContainer {
+	display: flex;
+	gap: 8px;
+	height: 100%;
+} */
+
+
+
+#mainContainer {
+	display: flex;
+	flex-direction: column; /* ← 横並びから縦レイアウト制御 */
+	height: 100%;
+	gap: 6px;
+}
+
+#topArea {
+	flex: 1; /* ここがスクロール領域 */
+	display: flex;
+	gap: 8px;
+	min-height: 0; /* ← 超重要: flex scroll fix */
+}
+
+/* 左カラム（タブ列） */
+#tabColumn {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	flex-shrink: 0;
+}
+
+/* サイドバー */
+.sidebar {
+	width: 150px;
+	background: #fafafa;
+	border-right: 1px solid #ddd;
+	display: flex;
+	flex-direction: column;
+	transition: width 0.15s ease;
+	overflow: hidden;
+}
+
+.sidebar.collapsed {
+	width: 27px;
+}
+
+/* サイドバー ヘッダー */
+.sidebar-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 8px;
+	font-size: 13px;
+	font-weight: 700;
+	background: #f4f4f4;
+	border-bottom: 1px solid #ddd;
+}
+
+.sidebar-title {
+	white-space: nowrap;
+	transition: opacity 0.1s;
+}
+
+.sidebar.collapsed .sidebar-title {
+	opacity: 0;
+}
+
+/* Toggle Button */
+#sidebarToggle {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 12px;
+	padding: 2px 4px;
+	color: #555;
+}

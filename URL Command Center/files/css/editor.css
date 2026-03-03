@@ -1,0 +1,240 @@
+/* =====================
+   Editor Panel
+===================== */
+
+.editor-panel {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: calc(100vw - 10px);
+	height: 100%;
+	background: #fafafa;
+	box-shadow: -4px 0 12px rgba(0,0,0,0.15);
+	transition: transform 0.2s ease;
+	padding: 8px;
+	z-index: 9999;
+	transform: translateX(100%);
+}
+
+.sidebar.collapsed + #buttons ~ .editor-panel {
+	width: calc(100vw - 42px);
+}
+
+.editor-panel.open {
+	transform: translateX(0);
+}
+
+.editor-header {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	align-items: center;
+	padding: 8px;
+	border-bottom: 1px solid #ddd;
+	font-weight: bold;
+	font-size: 14px;
+	background: #fafafa;
+	position: sticky;
+	top: 0;
+	z-index: 2;
+}
+
+.close-btn {
+	background: #ff4d4f;
+	color: white;
+	border: none;
+	border-radius: 999px;
+	padding: 6px 14px;
+	font-size: 12px;
+	font-weight: bold;
+	cursor: pointer;
+	position: absolute;
+	left: 22%;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+	transition: transform 0.1s ease, background 0.15s ease;
+}
+
+.close-btn:hover {
+	background: #e6393b;
+	transform: scale(1.05);
+}
+
+.close-btn:active {
+	transform: scale(0.95);
+}
+
+#editorContent {
+	overflow-y: auto;
+	max-height: calc(100vh - 60px);
+}
+
+/* =====================
+   URL List Rows
+===================== */
+
+.row {
+	display: flex;
+	gap: 4px;
+	margin-bottom: 4px;
+	align-items: center;
+}
+
+.row .label {
+	flex: 0 0 80px;
+}
+
+.row .url {
+	flex: 1;
+	min-width: 120px;
+}
+
+.row .color {
+	flex: 0 0 40px;
+	padding: 0;
+	height: 20px;
+}
+
+.row .delete {
+	flex: 0 0 24px;
+	background: #ff6666;
+	color: white;
+	border-radius: 4px;
+	font-size: 12px;
+	line-height: 1;
+}
+.row .duplicate {
+  background: #6bb86e;
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  width: 28px;
+}
+
+.row .duplicate:hover {
+  background: #5c9c5e;
+}
+
+
+/* =====================
+	設定画面のレイアウト
+===================== */
+
+#settingContent {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	font-size: 13px;
+}
+
+/* 設定グループ */
+.setting-group {
+	background: #ffffff;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	padding: 10px;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.setting-group-title {
+	font-weight: bold;
+	font-size: 13px;
+	margin-bottom: 4px;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 4px;
+}
+
+/* 設定行 */
+.setting-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	font-size: 12px;
+}
+
+/* 左側ラベル */
+.setting-row span {
+	flex: 1;
+}
+
+/* チェックボックス */
+.setting-row input[type="checkbox"] {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+/* カラーピッカー */
+.setting-row input[type="color"] {
+	width: 32px;
+	height: 20px;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+}
+
+/* 設定操作ボタン */
+.setting-actions button {
+	margin-top: 6px;
+	padding: 6px 10px;
+	font-size: 12px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	background: #f5f5f5;
+	cursor: pointer;
+}
+
+.setting-actions button:hover {
+	background: #eaeaea;
+}
+
+
+/* バックログ自動入力UI */
+.backlog-generator {
+	border: 1px solid #ddd;
+	padding: 8px;
+	margin-bottom: 10px;
+	border-radius: 8px;
+	background: #efefef;
+}
+
+.backlog-title {
+	font-weight: bold;
+	margin-bottom: 6px;
+}
+
+.backlog-template-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin-bottom: 6px;
+}
+
+.backlog-template-btn {
+	padding: 4px 6px;
+	font-size: 12px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	background: #fff;
+	cursor: pointer;
+}
+
+.backlog-template-btn.active {
+	background: #222;
+	color: #fff;
+}
+
+.backlog-input {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 6px;
+	margin-bottom: 4px;
+}
+
+.backlog-preview {
+	font-size: 12px;
+	color: #666;
+	word-break: break-all;
+}

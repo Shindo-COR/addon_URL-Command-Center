@@ -1,0 +1,160 @@
+/* =====================
+	Tabs Area
+===================== */
+
+#tabs {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	width: 150px;
+	overflow-y: auto;
+	padding: 6px;
+	background: #f7f7f7;
+	border-right: 1px solid #ddd;
+}
+
+/* ---------------------
+   タブ
+--------------------- */
+.tab {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 6px 8px;
+	border-radius: 8px;
+	background: #ffffff;
+	cursor: pointer;
+	font-size: 12px;
+	border: 1px solid #e5e5e5;
+	transition: 
+		background 0.15s ease,
+		transform 0.08s ease,
+		box-shadow 0.15s ease;
+	}
+
+
+/* タイトル */
+.tab span {
+	flex: 1;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-weight: 500;
+}
+
+/* ホバー */
+.tab:hover {
+	background: #eef3ff;
+	transform: translateX(2px);
+	box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.tab {
+	position: relative;
+}
+
+.tab:hover::after {
+	content: attr(data-title);
+	position: absolute;
+	bottom: -28px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #222;
+	color: #fff;
+	padding: 4px 8px;
+	border-radius: 6px;
+	font-size: 12px;
+	white-space: nowrap;
+	z-index: 9999;
+}
+
+.tab-title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 120px; /* 好きな幅に調整 */
+}
+
+/* Active Tab */
+.tab.active {
+	background: #1f2937;
+	color: #fff;
+	border-color: #1f2937;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* Active Hover (さらに強調) */
+.tab.active:hover {
+	background: #111827;
+}
+
+/* ---------------------
+   編集ボタン
+--------------------- */
+.edit-tab-btn {
+	border: none;
+	background: transparent;
+	border-radius: 999px;
+	padding: 2px 6px;
+	font-size: 11px;
+	cursor: pointer;
+	opacity: 0;
+	transition: 
+		opacity 0.15s ease,
+		background 0.15s ease,
+		transform 0.1s ease;
+}
+
+/* タブHover時のみ表示 */
+.tab:hover .edit-tab-btn {
+  opacity: 0.8;
+}
+
+.edit-tab-btn:hover {
+	background: #ffe9a8;
+	transform: scale(1.1);
+	opacity: 1;
+}
+
+/* ---------------------
+   タブ追加
+--------------------- */
+.add-tab-btn {
+	padding: 6px;
+	border-radius: 999px;
+	border: 1px dashed #bbb;
+	background: #fff;
+	cursor: pointer;
+	font-size: 15px;
+	transition: background 0.15s, transform 0.1s;
+}
+
+.add-tab-btn:hover {
+	background: #e8f0ff;
+	transform: scale(1.1);
+}
+
+/* ---------------------
+   Tooltip for Edit
+--------------------- */
+/* .edit-tab-btn::after {
+	content: "削除";
+	position: absolute;
+	bottom: -24px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #111827;
+	color: #fff;
+	font-size: 10px;
+	padding: 2px 6px;
+	border-radius: 6px;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.15s;
+	z-index: 100;
+}
+
+.edit-tab-btn:hover::after {
+	opacity: 1;
+} */

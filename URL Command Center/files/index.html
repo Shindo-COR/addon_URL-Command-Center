@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<!-- メインコンテナ: 左にタブ、右にボタン領域 -->
+<div id="mainContainer">
+	<div id="topArea">
+		<!-- サイドバー -->
+		<aside id="sidebar" class="sidebar collapsed">
+			<div class="sidebar-header">
+				<span class="sidebar-title">マイセット</span>
+				<button id="sidebarToggle">≪</button>
+			</div>
+
+			<div id="tabs" class="tabs"></div>
+		</aside>
+		<!-- メインボタン領域 -->
+		<div id="buttons">
+			<div id="mainButtonsContainer"></div>
+		</div>
+	</div>
+			<!-- リサイズバー -->	
+		<div id="memoResizeHandle"></div>
+		<!-- メモ帳 -->
+		<div id="memoPad">
+			<div class="memo-header">
+				<select id="memoSelect"></select>
+				<!-- 定型文ボタン追加コンテナ -->
+				<button id="addMemoBtn">＋</button>
+				<button id="deleteMemoBtn">✖</button>
+				<div id="memoTemplateContainer" style="display:flex; gap:4px; margin-left:6px;"></div>
+			</div>
+			<textarea id="memoTextarea" placeholder="◆ URLボタン追加
+			https://example.com &emsp;ラベル
+			
+			◆ マイセット作成（先頭に myset 必ずを書く）
+			myset セット名
+			https://example.com &emsp;ラベル
+			→ 「メモを反映」を押すと実行されます">
+			</textarea>
+			<div class="memo-actions">
+				<button id="clearMemoBtn">クリア</button>
+				<button id="copyMemoBtn">コピー (Ctrl+Aでも可)</button>
+				<button id="memoExecuteBtn">メモを反映</button>
+				<button id="templateBtn">定型文にセット</button>
+			</div>
+		</div>
+</div>
+
+	<!-- エディタパネル -->
+	<div id="editorPanel" class="editor-panel">
+		<div class="editor-header">
+			<span>編集画面</span>
+			<button id="close-btn" class="close-btn">保存して閉じる</button>
+		</div>
+		<div id="editorContent"></div>
+	</div>
+
+	<!-- 設定パネル -->
+	<div id="settingsPanel" class="editor-panel setting-panel">
+		<div class="editor-header">
+			<span>設定</span>
+			<button id="closeSettingsBtn" class="close-btn">閉じる</button>
+		</div>
+		<div id="settingContent">
+		<!-- initSettings() で項目が描画されます -->
+		</div>
+	</div>
+
+	</div>
+</div>
+<script src="config/defaultconfig.js"></script>
+
+<script src="model/state.js"></script>
+<script src="model/storage.js"></script>
+
+<script src="libs/Sortable.min.js"></script>
+
+<script src="view/setting/darkRainbow.js"></script>
+<script src="view/setting/base.js"></script>
+
+<script src="view/button/ui/tooltip.js"></script>
+<script src="view/button/ui/fixedButtons.js"></script>
+<script src="view/button/ui/mainButtons.js"></script>
+<script src="view/button/ui/sortable.js"></script>
+<script src="view/button/theme/darkMode.js"></script>
+<script src="view/button/theme/rainbowHover.js"></script>
+<script src="view/button/ui/buttonRenderer.js"></script>
+
+<script src="view/editor/editorUI.js"></script>
+<script src="view/editor/editorButton.js"></script>
+<script src="view/editor/editorSortable.js"></script>
+<script src="view/editor/editorBacklog.js"></script>
+<script src="view/editor/editorTabActions.js"></script>
+<script src="view/editor/editorCore.js"></script>
+
+<script src="view/tab/tabUtils.js"></script>
+<script src="view/tab/backlogApi.js"></script>
+<script src="view/tab/markdownParser.js"></script>
+<script src="view/tab/tabReorder.js"></script>
+<script src="view/tab/tabCreator.js"></script>
+<script src="view/tab/tabRenderer.js"></script>
+<script src="view/tab/tabCore.js"></script>
+
+<script src="view/memo/memoCore.js"></script>
+<script src="view/memo/memoStorage.js"></script>
+<script src="view/memo/memoUI.js"></script>
+<script src="view/memo/memoCrud.js"></script>
+<script src="view/memo/memoResize.js"></script>
+<script src="view/memo/memoParser.js"></script>
+<script src="view/memo/memoTemplates.js"></script>
+<script src="view/memo/memoInit.js"></script>
+
+<script src="view/sidebar.js"></script>
+<script src="service/autosave.js"></script>
+<script src="controller/main.js"></script>
+
+</body>
+</html>
