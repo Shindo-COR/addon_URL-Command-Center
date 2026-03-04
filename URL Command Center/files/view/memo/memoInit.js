@@ -103,12 +103,21 @@ Memo.init = function () {
 		ButtonRenderer.renderButtons();
 	};
 
-	//memoコピー
-	// Ctrl+A shortcut
+
+	// ショートカットキー
 	Memo.textarea.addEventListener("keydown", e => {
-		if (e.ctrlKey && e.key === "a") Memo.copyBtn.click();
+		// Ctrl+A（既存）
+		if (e.ctrlKey && e.key === "a") {
+			Memo.copyBtn.click();
+			return;
+		}
+
+		//  Shift + Enter で「メモを反映」実行
+		if (e.shiftKey && e.key === "Enter") {
+			e.preventDefault(); // 改行させない
+			Memo.memoExecuteBtn.click(); // 既存処理をそのまま呼ぶ
+		}
 	});
-	
 };
 
 document.addEventListener("DOMContentLoaded", Memo.init);
