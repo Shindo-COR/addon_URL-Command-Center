@@ -29,7 +29,6 @@ window.renderTabs = function () {
 			}
 		});
 
-
 		// タブクリック
 		tab.onclick = () => {
 			AppState.active = key;
