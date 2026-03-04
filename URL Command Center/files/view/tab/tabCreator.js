@@ -29,12 +29,12 @@ Tab.Creator.createPrompt = async function () {
 	// テンプレ判定（labelPrefix 優先）
 	// =========================
 	if (normalizedKey) {
-	for (const tpl of Object.values(templates)) {
-		if (normalizedKey.startsWith(tpl.labelPrefix)) {
-		matchedTpl = tpl;
-		break;
+		for (const tpl of Object.values(templates)) {
+			if (normalizedKey.startsWith(tpl.labelPrefix)) {
+				matchedTpl = tpl;
+				break;
+			}
 		}
-	}
 	}
 
 	// =========================
@@ -42,15 +42,20 @@ Tab.Creator.createPrompt = async function () {
 	// =========================
 	if (!matchedTpl || !normalizedKey) {
 		AppState.sets[raw] = { title: raw, buttons: [] };
+		AppState.tabOrder.push(raw);
 		AppState.active = raw;
-		saveStorage({ sets: AppState.sets, activeSet: raw });
-		Tab.Renderer.render();
+		saveStorage({
+			sets: AppState.sets,
+			activeSet: raw,
+			tabOrder: AppState.tabOrder
+		});
+		Tab.renderTabs();
 		return;
 	}
 
-  // =========================
-  // Backlog案件モード
-  // =========================
+	// =========================
+	// Backlog案件モード
+	// =========================
 	const issueKey = normalizedKey;
 	const issueData = await Tab.Api.fetchIssue(issueKey);
 	const buttons = [];
@@ -61,16 +66,15 @@ Tab.Creator.createPrompt = async function () {
 		url: matchedTpl.pattern.replace(/X+/g, issueNumber),
 		color: matchedTpl.color || "#2B8269",
 	});
-
 	// Markdown解析
 	const extracted = Tab.Markdown.parse(issueData?.description ?? "");
-
+	
 	// テンプレ自動ボタン
 	window.DEFAULT_CONFIG.autoMysetTemplate.baseButtons.forEach(b => {
 		buttons.push({
-		label: b.label,
-		url: extracted[b.label] || "",
-		color: b.color,
+			label: b.label,
+			url: extracted[b.label] || "",
+			color: b.color,
 		});
 	});
 
@@ -79,7 +83,15 @@ Tab.Creator.createPrompt = async function () {
 		buttons,
 	};
 
+	AppState.tabOrder.push(issueKey);
+
 	AppState.active = issueKey;
-	saveStorage({ sets: AppState.sets, activeSet: issueKey });
+
+	saveStorage({
+		sets: AppState.sets,
+		activeSet: issueKey,
+		tabOrder: AppState.tabOrder
+	});
+
 	Tab.renderTabs();
 }
