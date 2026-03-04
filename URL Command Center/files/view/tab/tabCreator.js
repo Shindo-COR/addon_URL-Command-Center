@@ -50,6 +50,7 @@ Tab.Creator.createPrompt = async function () {
 			tabOrder: AppState.tabOrder
 		});
 		Tab.renderTabs();
+		ButtonRenderer.renderButtons();
 		return;
 	}
 
@@ -92,6 +93,7 @@ Tab.Creator.createPrompt = async function () {
 		activeSet: issueKey,
 		tabOrder: AppState.tabOrder
 	});
-
+	ButtonRenderer.renderButtons();
 	Tab.renderTabs();
+
 }
