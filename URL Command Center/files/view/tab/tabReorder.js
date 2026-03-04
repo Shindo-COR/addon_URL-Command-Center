@@ -1,15 +1,13 @@
 window.Tab = window.Tab || {};
 Tab.Reorder = {};
 
-Tab.Reorder.reorder = function (fromKey, toKey) {
-    const keys = Object.keys(AppState.sets);
-    const fromIndex = keys.indexOf(fromKey);
-    const toIndex = keys.indexOf(toKey);
-    if (fromIndex < 0 || toIndex < 0) return;
+Tab.Reorder.reorder = function(fromKey, toKey) {
+	const arr = AppState.tabOrder;
 
-    keys.splice(toIndex, 0, keys.splice(fromIndex, 1)[0]);
+	const fromIndex = arr.indexOf(fromKey);
+	const toIndex = arr.indexOf(toKey);
 
-    const newSets = {};
-    keys.forEach(k => newSets[k] = AppState.sets[k]);
-    AppState.sets = newSets;
+	if (fromIndex < 0 || toIndex < 0) return;
+
+	arr.splice(toIndex, 0, arr.splice(fromIndex, 1)[0]);
 };

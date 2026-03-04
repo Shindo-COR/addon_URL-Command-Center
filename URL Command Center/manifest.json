@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "URL Command Center",
-  "version": "3.0",
+  "version": "3.1",
   "permissions": ["storage", "tabs", "sidePanel"],
   "side_panel": {
     "default_path": "files/index.html"
