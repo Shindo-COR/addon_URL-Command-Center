@@ -28,10 +28,7 @@ Memo.init = function () {
 	let timer;
 	Memo.textarea.oninput = () => {
 		clearTimeout(timer);
-
-		// ★ ここが重要
 		Memo.data.memos[Memo.data.activeMemo] = Memo.textarea.value;
-
 		timer = setTimeout(Memo.save, 300);
 	};
 

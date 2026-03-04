@@ -38,11 +38,12 @@ Memo.copy = function () {
 	Memo.textarea.select();
 	document.execCommand("copy");
 	Memo.copyBtn.textContent = "✓ コピー完了";
-	setTimeout(() => Memo.copyBtn.textContent = "コピー (Ctrl+Aでも可)", 1500);
+	setTimeout(() => Memo.copyBtn.textContent = "コピー (Ctrl+Aでも可)", 1200);
 };
 
 Memo.clear = function () {
 	Memo.textarea.value = "";
+	Memo.data.memos[Memo.data.activeMemo] = ""; 
 	Memo.save();
 };
 
