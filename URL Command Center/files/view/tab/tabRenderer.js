@@ -55,19 +55,6 @@ Tab.Renderer.render = function () {
 			ButtonRenderer.renderButtons();
 		};
 
-		// // drag
-		// tab.addEventListener("dragstart", (e) => {
-		// 	e.dataTransfer.setData("text/plain", key);
-		// });
-
-		// tab.addEventListener("drop", (e) => {
-		// 	e.preventDefault();
-		// 	const draggedKey = e.dataTransfer.getData("text/plain");
-		// 	Tab.Reorder.reorder(draggedKey, key);
-		// 	saveStorage({ sets: AppState.sets });
-		// 	Tab.Renderer.render();
-		// });
-
 		// -----------------------
 		// ドラッグ処理
 		// -----------------------
