@@ -12,6 +12,7 @@ Memo.init = function () {
 	Memo.templateBtn = document.getElementById("templateBtn");
 
 	Memo.memoExecuteBtn  = document.getElementById("memoExecuteBtn");
+	Memo.createTxtBtn = document.getElementById("createTxt");
 
 	// 初期描画
 	Memo.renderSelect();
@@ -103,6 +104,8 @@ Memo.init = function () {
 		ButtonRenderer.renderButtons();
 	};
 
+	// ドキュメントとして保存ボタン
+	Memo.createTxtBtn.onclick = Memo.MemoTxt.download;
 
 	// ショートカットキー
 	Memo.textarea.addEventListener("keydown", e => {
@@ -116,6 +119,12 @@ Memo.init = function () {
 		if (e.shiftKey && e.key === "Enter") {
 			e.preventDefault(); // 改行させない
 			Memo.memoExecuteBtn.click(); // 既存処理をそのまま呼ぶ
+		}
+
+		// Ctrl+S でテキスト保存
+		if (e.ctrlKey && e.key === "s") {
+			e.preventDefault(); // ブラウザ保存を防止
+			Memo.MemoTxt.download();
 		}
 	});
 };
