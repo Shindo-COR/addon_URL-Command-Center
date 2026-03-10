@@ -63,10 +63,21 @@ EditorBacklog.render = function(key) {
 
 		function updatePreview() {
 			const num = input.value;
-			if (!num) return preview.textContent = "";
+			if (!num) {
+				preview.innerHTML = "";
+				return;
+			}
 
 			const tpl = templates[activeTemplateKey];
-			preview.textContent = `${buildLabel(tpl, num)} → ${buildURL(tpl, num)}`;
+			const label = buildLabel(tpl, num);
+			const url = buildURL(tpl, num);
+
+			preview.innerHTML = `
+				${label} → 
+				<a href="${url}" target="_blank" class="backlog-preview-link">
+					${url}
+				</a>
+			`;
 		}
 
 		input.oninput = updatePreview;
