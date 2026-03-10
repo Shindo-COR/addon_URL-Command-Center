@@ -23,7 +23,9 @@ window.closeEditorPanel = function() {
 window.EditorCore = {};
 
 EditorCore.bindClose = function() {
-	document.getElementById("close-btn").onclick = () => {
+	const closeBtn = document.getElementById("close-btn");
+
+	closeBtn.onclick = () => {
 		const set = Editor.set;
 		set.title = document.getElementById("tabTitle").value;
 
@@ -41,4 +43,20 @@ EditorCore.bindClose = function() {
 		ButtonRenderer.renderButtons();
 		closeEditorPanel();
 	};
+
+	// Enterキーで「保存して閉じる」
+	document.addEventListener("keydown", (e) => {
+
+		// editorが開いていない場合は無視
+		if (!Editor.panel.classList.contains("open")) return;
+
+		// textareaではEnter許可
+		if (e.target.tagName === "TEXTAREA") return;
+
+		if (e.key === "Enter") {
+			e.preventDefault();
+			closeBtn.click();
+		}
+
+	});
 };
