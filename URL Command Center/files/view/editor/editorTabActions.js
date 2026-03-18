@@ -5,21 +5,31 @@ EditorTabActions.bind = function(key) {
 
 	// 複製
 	document.getElementById("duplicateTab").onclick = () => {
+
 		const keys = Object.keys(AppState.sets);
-		if (keys.length >= AppState.MAX_TABS) return;
+
+		if (keys.length >= AppState.MAX_TABS) {
+			alert(`タブは最大${AppState.MAX_TABS}件までです`);
+			return;
+		}
 
 		const newKey = "set" + Date.now();
-		const cloned = JSON.parse(JSON.stringify(set));
+		const cloned = JSON.parse(JSON.stringify(Editor.set));
+
 		cloned.title += " (copy)";
 
 		AppState.sets[newKey] = cloned;
+		AppState.tabOrder.push(newKey);
 		AppState.active = newKey;
+
 		saveStorage({ sets: AppState.sets, activeSet: AppState.active });
 
 		closeEditorPanel();
-		// renderTabs();
+
 		Tab.renderTabs();
-		renderButtons();
+		
+		ButtonRenderer.renderButtons();
+
 	};
 
 	// 削除
@@ -44,18 +54,4 @@ EditorTabActions.bind = function(key) {
 		ButtonRenderer.renderButtons();
 	};
 
-	// リセット
-	document.getElementById("resetTab").onclick = () => {
-		if (!confirm("全タブを初期状態に戻しますか？")) return;
-
-		AppState.sets = JSON.parse(JSON.stringify(window.DEFAULT_CONFIG.sets));
-		AppState.active = window.DEFAULT_CONFIG.activeSet || Object.keys(AppState.sets)[0];
-
-		// renderTabs();
-		Tab.renderTabs();
-		// renderButtons();
-		ButtonRenderer.renderButtons();
-		closeEditorPanel();
-		saveStorage({ sets: AppState.sets, activeSet: AppState.active });
-	};
 };

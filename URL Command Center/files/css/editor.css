@@ -238,3 +238,75 @@
 	color: #666;
 	word-break: break-all;
 }
+
+/* タブ名のところのUI */
+.tab-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+/* タイトルエリア */
+.tab-title-area {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+/* タブ名ラベル */
+#tabName {
+	flex: 0 0 auto;
+	margin: 0;
+	font-size: 13px;
+}
+
+/* タブ名input */
+#tabTitle {
+	flex: 1;
+	box-sizing: border-box;
+	padding: 4px 6px;
+	font-size: 13px;
+}
+
+/* 三点は固定 */
+.tab-menu-area {
+	flex: 0 0 auto;
+	position: relative;
+}
+
+.tab-menu-btn {
+	font-size: 18px;
+	margin-top: 3px;
+	padding: 4px 8px;
+	cursor: pointer;
+	line-height: 1;
+}
+
+.tab-menu {
+	position:absolute;
+	right:0;
+	top:28px;
+	background:white;
+	border:1px solid #ccc;
+	display:flex;
+	flex-direction:column;
+	gap:4px;
+	padding:6px;
+	z-index:10;
+
+	border-radius:6px;
+	box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+.tab-menu.hidden {
+	display:none;
+}
+
+.tab-menu button{
+	text-align:left;
+	white-space: nowrap;
+}
+
+.hidden {
+	display: none;
+}

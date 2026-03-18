@@ -1,4 +1,5 @@
 window.Editor = {}; // 名前空間
+window.EditorCore = {};
 
 window.openEditor = function(key) {
 	Editor.key = key;
@@ -11,8 +12,12 @@ window.openEditor = function(key) {
 	EditorUI.renderLayout();
 	EditorButton.drawRows();
 	EditorBacklog.render(key);
-	EditorTabActions.bind(key);
+
+	EditorUI.bindMenu(); 
+
 	EditorButton.bindAddButton();
+
+	EditorTabActions.bind(key);
 	EditorCore.bindClose();
 };
 
@@ -20,7 +25,6 @@ window.closeEditorPanel = function() {
 	document.getElementById("editorPanel").classList.remove("open");
 };
 
-window.EditorCore = {};
 
 EditorCore.bindClose = function() {
 	const closeBtn = document.getElementById("close-btn");
